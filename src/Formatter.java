@@ -1,23 +1,28 @@
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+
 
 /**
  * Created by kkp on 03.07.15.
  */
+
 public class Formatter {
 
-    public Formatter() {
+    public Formatter() throws FormatterException {
     }
 
-    byte[] someAction(int symbol){
-        return new byte[]{};
-    }
+    public void check(InputStream in, OutputStream out) throws FormatterException {
+        char symbol;
+        Editor styler = new JavaCodeStyler();
+        while(!in.isEnd()){
+            try {
+                symbol = in.read();
+            } catch (StreamException e) {
+                throw new FormatterException();
+            }
+            String result ;
 
-    public void check(InputStream in, OutputStream out) throws IOException {
-        int symbol;
-        while ((symbol = in.read()) != -1){
-            out.write(someAction( symbol));
+            result = styler.edit(symbol);
+
+            out.write(result);
         }
     }
 
