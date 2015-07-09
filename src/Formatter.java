@@ -9,9 +9,9 @@ public class Formatter {
     public Formatter() throws FormatterException {
     }
 
-    public void check(InputStream in, OutputStream out) throws FormatterException {
+    public void check(InputStream in, OutputStream out,Editor[] editors) throws FormatterException {
         char symbol;
-        Editor styler = new JavaCodeStyler();
+        Editor styler = new JavaCodeStyler(editors);
         while(!in.isEnd()){
             try {
                 symbol = in.read();

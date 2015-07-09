@@ -9,7 +9,7 @@ public class Main {
         StringOutputStream out = new StringOutputStream();
 
         try {
-            form.check(in,out);
+            form.check(in,out,new Editor[]{ new SpaceDeller() });
         } catch (FormatterException e) {
             //e.printStackTrace();
         }
